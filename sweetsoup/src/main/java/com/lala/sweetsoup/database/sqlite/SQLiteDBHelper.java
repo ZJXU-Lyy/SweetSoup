@@ -70,7 +70,6 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
             synchronized (sqLiteDBHelper) {
                 SQLiteDatabase sqLiteDatabase = sqLiteDBHelper.getWritableDatabase();
                 sqLiteDatabase.execSQL(sql);
-                sqLiteDatabase.close();
             }
         }
     }
@@ -87,7 +86,6 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
             synchronized (sqLiteDBHelper) {
                 SQLiteDatabase sqLiteDatabase = sqLiteDBHelper.getWritableDatabase();
                 sqLiteDatabase.execSQL(sql, bindArgs);
-                sqLiteDatabase.close();
             }
         }
     }
@@ -103,9 +101,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         if (sqLiteDBHelper != null) {
             synchronized (sqLiteDBHelper) {
                 SQLiteDatabase sqLiteDatabase = sqLiteDBHelper.getReadableDatabase();
-                Cursor cursor = sqLiteDatabase.rawQuery(sql, null);
-                sqLiteDatabase.close();
-                return cursor;
+                return sqLiteDatabase.rawQuery(sql, null);
             }
         }
         return null;
@@ -123,9 +119,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         if (sqLiteDBHelper != null) {
             synchronized (sqLiteDBHelper) {
                 SQLiteDatabase sqLiteDatabase = sqLiteDBHelper.getReadableDatabase();
-                Cursor cursor = sqLiteDatabase.rawQuery(sql, bindArgs);
-                sqLiteDatabase.close();
-                return cursor;
+                return sqLiteDatabase.rawQuery(sql, bindArgs);
             }
         }
         return null;
@@ -143,7 +137,6 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
             synchronized (sqLiteDBHelper) {
                 SQLiteDatabase sqLiteDatabase = sqLiteDBHelper.getWritableDatabase();
                 sqLiteDatabase.insert(table, null, contentValues);
-                sqLiteDatabase.close();
             }
         }
     }
@@ -161,7 +154,6 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
             synchronized (sqLiteDBHelper) {
                 SQLiteDatabase sqLiteDatabase = sqLiteDBHelper.getWritableDatabase();
                 sqLiteDatabase.delete(table, where, whereArgs);
-                sqLiteDatabase.close();
             }
         }
     }
@@ -180,7 +172,6 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
             synchronized (sqLiteDBHelper) {
                 SQLiteDatabase sqLiteDatabase = sqLiteDBHelper.getWritableDatabase();
                 sqLiteDatabase.update(table, values, whereClause, whereArgs);
-                sqLiteDatabase.close();
             }
         }
     }
@@ -204,9 +195,7 @@ public class SQLiteDBHelper extends SQLiteOpenHelper {
         if (sqLiteDBHelper != null) {
             synchronized (sqLiteDBHelper) {
                 SQLiteDatabase sqLiteDatabase = sqLiteDBHelper.getReadableDatabase();
-                Cursor cursor = sqLiteDatabase.query(table, columns, selection, selectionArgs, groupBy, having, orderBy, limit);
-                sqLiteDatabase.close();
-                return cursor;
+                return sqLiteDatabase.query(table, columns, selection, selectionArgs, groupBy, having, orderBy, limit);
             }
         }
         return null;

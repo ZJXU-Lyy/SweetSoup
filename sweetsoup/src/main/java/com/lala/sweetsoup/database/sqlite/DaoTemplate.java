@@ -63,7 +63,7 @@ public abstract class DaoTemplate<T> {
         List<T> result = new ArrayList<>();
         Cursor cursor = sqLiteDBHelper.query(tableName, columns, selection, selectionArgs, groupBy, having, orderBy, limit);
         try {
-            if (null == cursor)
+            if (null == cursor || cursor.getCount() == 0)
                 throw new SQLException("query no result", tableName, "query");
             cursor.moveToFirst();
             for (int i = 0; i < cursor.getCount(); i++) {
