@@ -1,0 +1,3 @@
+include ':sweetsoup'
+include ':app'
+rootProject.name = "SweetSoup"
